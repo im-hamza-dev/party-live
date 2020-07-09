@@ -1,6 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "semantic-ui-css/semantic.min.css";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
