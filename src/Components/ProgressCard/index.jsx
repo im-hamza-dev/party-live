@@ -48,18 +48,18 @@ export default function ProgressCard() {
           <div>
             <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
             <Step.Content>
-              <Step.Title>Billing</Step.Title>
+              <Step.Title>You</Step.Title>
             </Step.Content>
           </div>
         </StyledStep>
-        <StyledStep disabled>
+        {/* <StyledStep disabled>
           <div>
             <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
             <Step.Content>
               <Step.Title>Billing</Step.Title>
             </Step.Content>
           </div>
-        </StyledStep>
+        </StyledStep> */}
       </Step.Group>
     </>
   );

@@ -65,7 +65,7 @@ export default function Tabs() {
           Friends
         </StyledButton>
       </FlexBox>
-      <StyledBox style={{ padding: 0, maxHeight: 200, overflow: "hidden" }}>
+      <StyledBox style={{ padding: 0, maxHeight: 200, overflowY: "scroll" }}>
         <TabPanes index={index} />
       </StyledBox>
     </>
