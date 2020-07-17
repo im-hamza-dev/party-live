@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Image, Label, Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import StyledSegment from "./Common/StyledSegment";
@@ -25,11 +25,13 @@ const Body = styled.div`
 //   max-height: 100% !important;
 // `;
 const StyledIconButton = styled(Button)`
-  width: 50px;
-  height: 50px;
+  width: 80px !important;
+  height: 50px !important;
   padding: 0px !important;
+  border-radius: 50% !important;
   margin-left: 15px !important;
   box-shadow: 0px 0px 5px #ba7ac0 !important;
+  background-color: white !important;
 `;
 const StyledLabel = styled(Label)`
   &&&& {
@@ -94,16 +96,20 @@ export default function MainApp() {
     "http://media.w3.org/2010/05/video/movie_300.webm",
     "http://media.w3.org/2010/05/sintel/trailer.mp4",
   ];
-  const [reactions, setReactions] = useState([
-    { heart: 13, beer: 34 },
-    { heart: 0, beer: 0 },
-    { heart: 0, beer: 0 },
-    { heart: 0, beer: 0 },
-    { heart: 0, beer: 0 },
-  ]);
-  // const [heart, setHeart] = useState(0);
+  const [heart, setHeart] = useState(0);
+  const [beer, setBear] = useState(0);
   const [currentUser, setCurrentUser] = useState(0);
   const [player, setPlayer] = useState();
+
+  useEffect(() => {
+    // player.subscribeToStateChange(handleStateChange());
+    // if (player) {
+    //   if (player.getState().player.currentTime === 5) {
+    //     setCurrentUser(currentUser + 1);
+    //     player.load();
+    //   }
+    // }
+  });
 
   return (
     <Body>
@@ -111,7 +117,11 @@ export default function MainApp() {
         <Grid.Row>
           <Grid.Column width={8}>
             <StyledSegment
-              style={{ padding: 0, maxHeight: 354, overflow: "hidden" }}
+              style={{
+                padding: 0,
+                maxHeight: 300,
+                overflow: "hidden",
+              }}
             >
               <Player>
                 <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
@@ -120,19 +130,20 @@ export default function MainApp() {
           </Grid.Column>
           <Grid.Column width={8}>
             <StyledSegment
-              style={{ padding: 0, maxHeight: 354, overflow: "hidden" }}
+              style={{ padding: 0, maxHeight: 300, overflow: "hidden" }}
             >
               <Player
                 ref={(player) => {
                   setPlayer(player);
                 }}
+                // autoPlay
               >
                 <source src={videoLinks[currentUser]} />
               </Player>
             </StyledSegment>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
+        <Grid.Row style={{ padding: 0 }}>
           <Grid.Column width={7}>
             <Tabs />
           </Grid.Column>
@@ -154,6 +165,7 @@ export default function MainApp() {
                   } else {
                     setCurrentUser(0);
                   }
+                  // console.log(player.getState().player.currentTime);
                   player.load();
                 }}
               >
@@ -164,31 +176,30 @@ export default function MainApp() {
                 2500 Viewers
               </StyledLabel>
               <StyledIconButton
-                circular
                 onClick={(e) => {
-                  setReactions((reactions) => {
-                    const updatedReactions = reactions;
-                    updatedReactions[currentUser] = {
-                      ...updatedReactions[currentUser],
-                      heart: updatedReactions[currentUser].heart + 1,
-                    };
-                    return updatedReactions;
-                  });
+                  setHeart(heart + 1);
+                  // setReactions((reactions) => {
+                  //   const updatedReactions = reactions;
+                  //   updatedReactions[currentUser] = {
+                  //     ...updatedReactions[currentUser],
+                  //     heart: updatedReactions[currentUser].heart + 1,
+                  //   };
+                  //   return updatedReactions;
+                  // });
                 }}
               >
                 <Icon
                   name="heart"
                   color="red"
                   size="large"
-                  style={{ margin: 0, padding: 0, marginTop: -45 }}
+                  style={{ margin: 0, padding: 0, marginTop: -15 }}
                 />
-                <LabelCount>{reactions[currentUser].heart}</LabelCount>
+                <LabelCount>{heart}</LabelCount>
               </StyledIconButton>
               <StyledIconButton
-                circular
                 onClick={() => {
-                  reactions[currentUser].beer = reactions[currentUser].beer + 1;
-                  console.log(reactions);
+                  setBear(beer + 1);
+                  // reactions[currentUser].beer = reactions[currentUser].beer + 1;
                 }}
               >
                 <Icon
@@ -198,18 +209,19 @@ export default function MainApp() {
                   style={{
                     margin: 0,
                     padding: 0,
-                    marginTop: -45,
                     marginLeft: 5,
+                    marginTop: -15,
                   }}
                 />
-                <LabelCount>{reactions[currentUser].beer}</LabelCount>
+                <LabelCount>{beer}</LabelCount>
               </StyledIconButton>
             </FlexBox>
             <StyledSegment
               style={{
                 backgroundColor: "transparent",
                 padding: 0,
-                maxHeight: 200,
+                margin: 0,
+                maxHeight: 280,
                 overflowY: "hidden",
                 boxShadow: "none",
               }}
@@ -217,13 +229,8 @@ export default function MainApp() {
               <img
                 src={NextDancer}
                 alt="next-dancer"
-                style={{ width: "90%", height: 200 }}
+                style={{ width: "100%" }}
               />
-              {/* <FlexBox>
-                <Image src="" />
-                <DancerHeading>NEXT DANCER</DancerHeading>
-              </FlexBox>
-              <ProgressCard /> */}
             </StyledSegment>
           </Grid.Column>
         </Grid.Row>
