@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Grid, Image, Label, Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import StyledSegment from "./Common/StyledSegment";
-import { Player } from "video-react";
+import { Player, BigPlayButton } from "video-react";
 import FlexBox from "./Common/FlexBox";
 import background from "../Assets/images/bg1.png";
 import NextDancer from "../Assets/images/nextDancer.png";
 import Logo from "../Assets/images/logo.png";
 // import ProgressCard from "./ProgressCard";
 import Tabs from "./Tabs";
+import WebCam from "./WebCam";
 
 const Body = styled.div`
   height: 100vh;
@@ -100,6 +101,8 @@ export default function MainApp() {
   const [beer, setBear] = useState(0);
   const [currentUser, setCurrentUser] = useState(0);
   const [player, setPlayer] = useState();
+  const [djPlayer, setDjPlayer] = useState();
+  const [programFlow, setProgramFlow] = useState(false);
 
   useEffect(() => {
     // player.subscribeToStateChange(handleStateChange());
@@ -109,6 +112,23 @@ export default function MainApp() {
     //     player.load();
     //   }
     // }
+    if (currentUser === 5) {
+      // setCurrentUser(0);
+      // player.load();
+      // djPlayer.load();
+      // setProgramFlow(false);
+      window.location.reload();
+    } else if (programFlow) {
+      console.log(currentUser);
+
+      if (currentUser !== 3 && player) {
+        player.load();
+        player.play();
+      }
+      setTimeout(() => {
+        setCurrentUser(currentUser + 1);
+      }, 13000);
+    }
   });
 
   return (
@@ -123,7 +143,12 @@ export default function MainApp() {
                 overflow: "hidden",
               }}
             >
-              <Player>
+              <Player
+                ref={(player) => {
+                  setDjPlayer(player);
+                }}
+              >
+                <BigPlayButton disabled />
                 <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
               </Player>
             </StyledSegment>
@@ -132,14 +157,19 @@ export default function MainApp() {
             <StyledSegment
               style={{ padding: 0, maxHeight: 300, overflow: "hidden" }}
             >
-              <Player
-                ref={(player) => {
-                  setPlayer(player);
-                }}
-                // autoPlay
-              >
-                <source src={videoLinks[currentUser]} />
-              </Player>
+              {currentUser === 3 ? (
+                <WebCam />
+              ) : (
+                <Player
+                  ref={(player) => {
+                    setPlayer(player);
+                  }}
+                  // autoPlay
+                >
+                  <BigPlayButton disabled />
+                  <source src={videoLinks[currentUser]} />
+                </Player>
+              )}
             </StyledSegment>
           </Grid.Column>
         </Grid.Row>
@@ -159,6 +189,15 @@ export default function MainApp() {
           <Grid.Column width={7}>
             <FlexBox justifyContent="flex-end">
               <StyledButton
+                disabled={programFlow === true}
+                onClick={() => {
+                  djPlayer.play();
+                  setProgramFlow(true);
+                }}
+              >
+                Play
+              </StyledButton>
+              {/* <StyledButton
                 onClick={() => {
                   if (currentUser < 4) {
                     setCurrentUser(currentUser + 1);
@@ -170,7 +209,7 @@ export default function MainApp() {
                 }}
               >
                 Next
-              </StyledButton>
+              </StyledButton> */}
               <StyledLabel size="big">{usersName[currentUser]}</StyledLabel>
               <StyledLabel size="big" style={{ width: 300 }}>
                 2500 Viewers
