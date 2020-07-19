@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import FlexBox from "../Common/FlexBox";
 
 export default function WebCam() {
   const [live, setLive] = useState(true);
@@ -38,6 +39,7 @@ export default function WebCam() {
   //stop input stream
   function stop(stream) {
     stream.getTracks().forEach((track) => track.stop());
+    // setLive(false);
   }
 
   const main = () => {
@@ -49,8 +51,7 @@ export default function WebCam() {
         audio: true,
       })
       .then((stream) => {
-        console.log(preview);
-
+        // console.log(preview);
         preview.srcObject = stream;
 
         // downloadButton.href = stream;
@@ -60,15 +61,20 @@ export default function WebCam() {
         return new Promise((resolve) => (preview.onplaying = resolve));
       })
       .then(() => startRecording(preview.captureStream(), recordingTimeMS))
-      .then((recordedChunks) => {
-        stop(preview.srcObject);
-        // document.getElementById("preview").id = "recording";
+      .then(async (recordedChunks) => {
+        await preview.srcObject.getTracks().forEach((track) => track.stop());
+        setLive("none");
+        // stop(preview.srcObject);
 
-        setTimeout(() => {
-          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-          preview.src = URL.createObjectURL(recordedBlob);
-          // preview.srcObject = recordedBlob;
-        }, 1000);
+        // document.getElementById("preview").id = "recording";
+        let recording = document.getElementById("recording");
+
+        // setTimeout(() => {
+        let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+        recording.src = URL.createObjectURL(recordedBlob);
+        // preview.load();
+        // preview.srcObject = recordedBlob;
+        // }, 1000);
 
         // preview.srcObject = recordedBlob;
         // downloadButton.href = preview.src;
@@ -90,12 +96,22 @@ export default function WebCam() {
 
   return (
     <>
-      {/* {live ? (
+      {/* {live === true ? (
         <video id="preview" width="100%" height="300" autoPlay muted></video>
       ) : (
         <video id="recording" width="100%" height="300" autoPlay muted></video>
       )} */}
-      <video id="preview" width="100%" height="300" autoPlay muted></video>
+      <FlexBox>
+        <video
+          id="preview"
+          width="100%"
+          height="300"
+          autoPlay
+          muted
+          style={{ display: live }}
+        ></video>
+        <video id="recording" width="100%" height="300" autoPlay muted></video>
+      </FlexBox>
     </>
   );
 }
