@@ -7,7 +7,7 @@ import FlexBox from "./Common/FlexBox";
 import background from "../Assets/images/bg1.png";
 import NextDancer from "../Assets/images/nextDancer.png";
 import Logo from "../Assets/images/logo.png";
-// import ProgressCard from "./ProgressCard";
+import ReactionsBar from "./ReactionsBar";
 import Tabs from "./Tabs";
 import WebCam from "./WebCam";
 
@@ -26,7 +26,7 @@ const Body = styled.div`
 //   max-height: 100% !important;
 // `;
 const StyledIconButton = styled(Button)`
-  width: 80px !important;
+  width: 50px !important;
   height: 50px !important;
   padding: 0px !important;
   border-radius: 50% !important;
@@ -87,6 +87,19 @@ const StyledButton = styled(Button)`
     }
   }
 `;
+const TimerBox = styled.div`
+  border-radius: 5px;
+  background-image: linear-gradient(50deg, #ff4af9, #71cdff);
+  width: 110px;
+  padding: 25px 30px 25px 32px;
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  position: absolute;
+  margin-top: -300px;
+  margin-left: 510px;
+  text-align: center;
+`;
 
 export default function MainApp() {
   let usersName = ["Alina", "Sabrina", "Alex", "Jack", "Anna"];
@@ -103,6 +116,7 @@ export default function MainApp() {
   const [player, setPlayer] = useState();
   const [djPlayer, setDjPlayer] = useState();
   const [programFlow, setProgramFlow] = useState(false);
+  const [timerPush, setPush] = useState(0);
 
   useEffect(() => {
     // player.subscribeToStateChange(handleStateChange());
@@ -120,16 +134,40 @@ export default function MainApp() {
       window.location.reload();
     } else if (programFlow) {
       console.log(currentUser);
-
+      if (currentUser === 0) {
+        setTimeout(() => {
+          setPush(1);
+          setTimerText();
+        }, 5000);
+      }
       if (currentUser !== 3 && player) {
         player.load();
         player.play();
       }
       setTimeout(() => {
+        // setPush(false);
+
         setCurrentUser(currentUser + 1);
-      }, 13000);
+      }, 10000);
     }
   });
+
+  const setTimerText = () => {
+    var timeleft = 5;
+    const t = setInterval(function () {
+      timeleft--;
+      if (timeleft >= 0) {
+        document.getElementById("timer").textContent = timeleft;
+      } else {
+        setPush(0);
+      }
+      if (timeleft < 1) {
+        clearInterval(t);
+        setPush(0);
+      }
+      // setPush(false);
+    }, 1000);
+  };
 
   return (
     <Body>
@@ -171,6 +209,15 @@ export default function MainApp() {
                 </Player>
               )}
             </StyledSegment>
+
+            <TimerBox id="timer" style={{ opacity: timerPush }}>
+              1 0
+            </TimerBox>
+            <div
+              style={{ position: "absolute", marginTop: -60, marginLeft: 30 }}
+            >
+              <ReactionsBar />
+            </div>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row style={{ padding: 0 }}>
@@ -183,12 +230,25 @@ export default function MainApp() {
               justifyContent="center"
               style={{ marginTop: 20 }}
             >
-              <img src={Logo} alt="logo-app" style={{ width: "100%" }} />
+              <StyledButton
+                style={{
+                  padding: 0,
+                  borderRadius: "50%",
+                  margin: 0,
+                }}
+                disabled={programFlow === true}
+                onClick={() => {
+                  djPlayer.play();
+                  setProgramFlow(true);
+                }}
+              >
+                <img src={Logo} alt="logo-app" style={{ width: "100%" }} />
+              </StyledButton>
             </FlexBox>
           </Grid.Column>
           <Grid.Column width={7}>
             <FlexBox justifyContent="flex-end">
-              <StyledButton
+              {/* <StyledButton
                 disabled={programFlow === true}
                 onClick={() => {
                   djPlayer.play();
@@ -196,7 +256,7 @@ export default function MainApp() {
                 }}
               >
                 Play
-              </StyledButton>
+              </StyledButton> */}
               {/* <StyledButton
                 onClick={() => {
                   if (currentUser < 4) {

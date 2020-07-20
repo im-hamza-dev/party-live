@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import FlexBox from "../Common/FlexBox";
 
 export default function WebCam() {
-  const [live, setLive] = useState(true);
   // variable
   //   let recording = document.getElementById("recording");
-  let startButton = document.getElementById("startButton");
-  let stopButton = document.getElementById("stopButton");
-  let downloadButton = document.getElementById("downloadButton");
-  let logElement = document.getElementById("log");
-  let recordingTimeMS = 5000;
+  // let startButton = document.getElementById("startButton");
+  // let stopButton = document.getElementById("stopButton");
+  // let downloadButton = document.getElementById("downloadButton");
+  // let logElement = document.getElementById("log");
+  let recordingTimeMS = 10000;
   //functions
   //   function log(msg) {
   //     logElement.innerHTML += msg + "\n";
@@ -63,30 +62,11 @@ export default function WebCam() {
       .then(() => startRecording(preview.captureStream(), recordingTimeMS))
       .then(async (recordedChunks) => {
         await preview.srcObject.getTracks().forEach((track) => track.stop());
-        setLive("none");
-        // stop(preview.srcObject);
 
-        // document.getElementById("preview").id = "recording";
-        let recording = document.getElementById("recording");
+        // let recording = document.getElementById("recording");
 
-        // setTimeout(() => {
-        let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-        recording.src = URL.createObjectURL(recordedBlob);
-        // preview.load();
-        // preview.srcObject = recordedBlob;
-        // }, 1000);
-
-        // preview.srcObject = recordedBlob;
-        // downloadButton.href = preview.src;
-        // downloadButton.download = "RecordedVideo.webm";
-
-        // log(
-        //   "Successfully recorded " +
-        //     recordedBlob.size +
-        //     " bytes of " +
-        //     recordedBlob.type +
-        //     " media."
-        // );
+        // let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+        // recording.src = URL.createObjectURL(recordedBlob);
       });
     //   .catch(log);
   };
@@ -96,21 +76,9 @@ export default function WebCam() {
 
   return (
     <>
-      {/* {live === true ? (
-        <video id="preview" width="100%" height="300" autoPlay muted></video>
-      ) : (
-        <video id="recording" width="100%" height="300" autoPlay muted></video>
-      )} */}
       <FlexBox>
-        <video
-          id="preview"
-          width="100%"
-          height="300"
-          autoPlay
-          muted
-          style={{ display: live }}
-        ></video>
-        <video id="recording" width="100%" height="300" autoPlay muted></video>
+        <video id="preview" width="100%" height="300" autoPlay muted></video>
+        {/* <video id="recording" width="100%" height="300" autoPlay muted></video> */}
       </FlexBox>
     </>
   );
