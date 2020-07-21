@@ -10,6 +10,13 @@ import Logo from "../Assets/images/logo.png";
 import ReactionsBar from "./ReactionsBar";
 import Tabs from "./Tabs";
 import WebCam from "./WebCam";
+import showImage from "../Assets/images/backShow.png";
+import DJVideo from "../Assets/videos/dj.mp4";
+import video1st from "../Assets/videos/1st.mp4";
+import video2nd from "../Assets/videos/2nd.mp4";
+import video3rd from "../Assets/videos/3rd.mp4";
+import video5th from "../Assets/videos/5th.mp4";
+import ProgressCard from "./ProgressCard";
 
 const Body = styled.div`
   height: 100vh;
@@ -103,13 +110,7 @@ const TimerBox = styled.div`
 
 export default function MainApp() {
   let usersName = ["Alina", "Sabrina", "Alex", "Jack", "Anna"];
-  let videoLinks = [
-    "http://media.w3.org/2010/05/bunny/trailer.mp4",
-    "http://media.w3.org/2010/05/sintel/trailer.mp4",
-    "http://media.w3.org/2010/05/bunny/trailer.mp4",
-    "http://media.w3.org/2010/05/video/movie_300.webm",
-    "http://media.w3.org/2010/05/sintel/trailer.mp4",
-  ];
+  let videoLinks = [video1st, video2nd, video3rd, video1st, video5th];
   const [heart, setHeart] = useState(0);
   const [beer, setBear] = useState(0);
   const [currentUser, setCurrentUser] = useState(0);
@@ -119,41 +120,41 @@ export default function MainApp() {
   const [timerPush, setPush] = useState(0);
 
   useEffect(() => {
-    // player.subscribeToStateChange(handleStateChange());
-    // if (player) {
-    //   if (player.getState().player.currentTime === 5) {
-    //     setCurrentUser(currentUser + 1);
-    //     player.load();
-    //   }
-    // }
     if (currentUser === 5) {
-      // setCurrentUser(0);
-      // player.load();
-      // djPlayer.load();
-      // setProgramFlow(false);
       window.location.reload();
     } else if (programFlow) {
       console.log(currentUser);
-      if (currentUser === 0) {
-        setTimeout(() => {
-          setPush(1);
-          setTimerText();
-        }, 5000);
-      }
       if (currentUser !== 3 && player) {
         player.load();
         player.play();
       }
       setTimeout(() => {
-        // setPush(false);
-
         setCurrentUser(currentUser + 1);
+      }, 15000);
+    }
+  }, [programFlow, currentUser, player]);
+
+  useEffect(() => {
+    if (currentUser === 2) {
+      // console.log("entered");
+      setTimeout(() => {
+        setPush(1);
+        setTimerText();
+        // setShowImgFlag(0);
       }, 10000);
     }
-  });
+  }, [timerPush, currentUser]);
+
+  // useEffect(() => {
+  //   if (currentUser === 2) {
+  //     setTimeout(() => {
+  //       setShowImgFlag(true);
+  //     }, 5000);
+  //   }
+  // });
 
   const setTimerText = () => {
-    var timeleft = 5;
+    var timeleft = 10;
     const t = setInterval(function () {
       timeleft--;
       if (timeleft >= 0) {
@@ -187,8 +188,16 @@ export default function MainApp() {
                 }}
               >
                 <BigPlayButton disabled />
-                <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
+                <source src={DJVideo} />
               </Player>
+              <Image
+                src={showImage}
+                style={{
+                  marginTop: -380,
+                  opacity: timerPush,
+                  position: "absolute",
+                }}
+              />
             </StyledSegment>
           </Grid.Column>
           <Grid.Column width={8}>
@@ -214,7 +223,7 @@ export default function MainApp() {
               1 0
             </TimerBox>
             <div
-              style={{ position: "absolute", marginTop: -60, marginLeft: 30 }}
+              style={{ position: "absolute", marginTop: -90, marginLeft: 20 }}
             >
               <ReactionsBar />
             </div>
@@ -323,13 +332,16 @@ export default function MainApp() {
                 maxHeight: 280,
                 overflowY: "hidden",
                 boxShadow: "none",
+                border: "1px solid white",
+                marginTop: 10,
               }}
             >
               <img
                 src={NextDancer}
                 alt="next-dancer"
-                style={{ width: "100%" }}
+                style={{ width: "50%", marginTop: 10 }}
               />
+              <ProgressCard />
             </StyledSegment>
           </Grid.Column>
         </Grid.Row>

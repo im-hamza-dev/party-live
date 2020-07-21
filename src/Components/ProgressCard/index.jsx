@@ -1,27 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 import { Step, Image } from "semantic-ui-react";
+import FlexBox from "../Common/FlexBox";
+import First from "../../Assets/images/dancers/1stdancer.jpeg";
+import Second from "../../Assets/images/dancers/2nddancer.jpg";
+import Third from "../../Assets/images/dancers/3rddancer.jpeg";
+import Fifth from "../../Assets/images/dancers/5thdancer.jpeg";
+import You from "../../Assets/images/dancers/you.png";
 
 const StyledImage = styled(Image)`
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  border-radius: 10px;
+  width: 55px;
+  height: 55px;
   margin-bottom: 10px;
   margin-left: 3px;
 `;
 const StyledStep = styled(Step)`
   &&&& {
     // border-radius: 10px;
+    background-color: transparent;
   }
+`;
+const Name = styled.div`
+  color: white;
 `;
 
 export default function ProgressCard() {
   return (
     <>
-      <Step.Group>
+      {/* <Step.Group>
         <StyledStep>
           <div>
-            <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
+            <StyledImage src={First} />
             <Step.Content>
               <Step.Title>Billing</Step.Title>
             </Step.Content>
@@ -29,7 +39,7 @@ export default function ProgressCard() {
         </StyledStep>
         <StyledStep active>
           <div>
-            <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
+            <StyledImage src={Second} />
             <Step.Content>
               <Step.Title>Billing</Step.Title>
             </Step.Content>
@@ -38,7 +48,7 @@ export default function ProgressCard() {
 
         <StyledStep disabled>
           <div>
-            <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
+            <StyledImage src={Third} />
             <Step.Content>
               <Step.Title>Billing</Step.Title>
             </Step.Content>
@@ -46,21 +56,47 @@ export default function ProgressCard() {
         </StyledStep>
         <StyledStep disabled>
           <div>
-            <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
+            <StyledImage src={You} />
             <Step.Content>
               <Step.Title>You</Step.Title>
             </Step.Content>
           </div>
         </StyledStep>
-        {/* <StyledStep disabled>
+        <StyledStep disabled>
           <div>
-            <StyledImage src="https://shoescrossroads.com/wp-content/uploads/2020/02/Attitude-girl-shoescrossroads.com-63-1024x683.jpeg" />
+            <StyledImage src={Fifth} />
             <Step.Content>
               <Step.Title>Billing</Step.Title>
             </Step.Content>
           </div>
-        </StyledStep> */}
-      </Step.Group>
+        </StyledStep>
+      </Step.Group> */}
+      <FlexBox
+        alignItems="center"
+        justifyContent="space-between"
+        style={{ width: "80%", margin: "auto", padding: 30 }}
+      >
+        <FlexBox flexDirection="column" alignItems="center">
+          <StyledImage src={First} />
+          <Name>First</Name>
+        </FlexBox>
+        <FlexBox flexDirection="column" alignItems="center">
+          <StyledImage src={Second} />
+          <Name>Second</Name>
+        </FlexBox>
+        <FlexBox flexDirection="column" alignItems="center">
+          <StyledImage src={Third} />
+          <Name>Third</Name>
+        </FlexBox>
+        <FlexBox flexDirection="column" alignItems="center">
+          <StyledImage src={You} />
+          <Name>You</Name>
+        </FlexBox>
+        <FlexBox flexDirection="column" alignItems="center">
+          <StyledImage src={Fifth} />
+          <Name>Fifth</Name>
+        </FlexBox>
+      </FlexBox>
     </>
   );
 }

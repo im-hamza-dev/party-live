@@ -8,7 +8,7 @@ export default function WebCam() {
   // let stopButton = document.getElementById("stopButton");
   // let downloadButton = document.getElementById("downloadButton");
   // let logElement = document.getElementById("log");
-  let recordingTimeMS = 10000;
+  let recordingTimeMS = 15000;
   //functions
   //   function log(msg) {
   //     logElement.innerHTML += msg + "\n";
