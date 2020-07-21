@@ -69,14 +69,14 @@ const LabelCount = styled.div`
   background-image: linear-gradient(50deg, #ff4af9, #71cdff);
   box-shadow: 0px 0px 5px #ba7ac0;
 `;
-const DancerHeading = styled.div`
-  font-size: 30px;
-  font-family: poppins;
-  font-weight: 600;
-  color: white;
-  width: 100px;
-  line-height: 30px;
-`;
+// const DancerHeading = styled.div`
+//   font-size: 30px;
+//   font-family: poppins;
+//   font-weight: 600;
+//   color: white;
+//   width: 100px;
+//   line-height: 30px;
+// `;
 const StyledButton = styled(Button)`
   &&&& {
     border-radius: 18px;

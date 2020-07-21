@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Icon } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 import FlexBox from "../Common/FlexBox";
 import beerColor from "../../Assets/images/beerColor.png";
 import beerBlack from "../../Assets/images/beerBlack.png";

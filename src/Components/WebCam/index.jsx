@@ -36,10 +36,10 @@ export default function WebCam() {
     return Promise.all([stopped, recorded]).then(() => data);
   };
   //stop input stream
-  function stop(stream) {
-    stream.getTracks().forEach((track) => track.stop());
-    // setLive(false);
-  }
+  // function stop(stream) {
+  //   stream.getTracks().forEach((track) => track.stop());
+  //   // setLive(false);
+  // }
 
   const main = () => {
     let preview = document.getElementById("preview");

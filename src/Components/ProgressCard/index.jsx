@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Step, Image } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import FlexBox from "../Common/FlexBox";
 import First from "../../Assets/images/dancers/1stdancer.jpeg";
 import Second from "../../Assets/images/dancers/2nddancer.jpg";
@@ -15,12 +15,12 @@ const StyledImage = styled(Image)`
   margin-bottom: 10px;
   margin-left: 3px;
 `;
-const StyledStep = styled(Step)`
-  &&&& {
-    // border-radius: 10px;
-    background-color: transparent;
-  }
-`;
+// const StyledStep = styled(Step)`
+//   &&&& {
+//     // border-radius: 10px;
+//     background-color: transparent;
+//   }
+// `;
 const Name = styled.div`
   color: white;
 `;
