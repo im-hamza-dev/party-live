@@ -17,6 +17,7 @@ import video2nd from "../Assets/videos/2nd.mp4";
 import video3rd from "../Assets/videos/3rd.mp4";
 import video5th from "../Assets/videos/5th.mp4";
 import ProgressCard from "./ProgressCard";
+import beerColor from "../Assets/images/beerColor.png";
 
 const Body = styled.div`
   height: 100vh;
@@ -116,9 +117,9 @@ const TimerBox = styled.div`
 
 export default function MainApp() {
   let usersName = ["Alina", "Sabrina", "Alex", "Jack", "Anna"];
+  let heart = [35, 22, 17, 23, 14];
+  let beer = [115, 187, 175, 225, 207];
   let videoLinks = [video1st, video2nd, video3rd, video1st, video5th];
-  const [heart, setHeart] = useState(0);
-  const [beer, setBear] = useState(0);
   const [currentUser, setCurrentUser] = useState(0);
   const [player, setPlayer] = useState();
   const [djPlayer, setDjPlayer] = useState();
@@ -240,7 +241,14 @@ export default function MainApp() {
             </StyledSegment>
 
             <div
-              style={{ position: "absolute", marginTop: -90, marginLeft: 20 }}
+              style={{
+                position: "absolute",
+                width: "100%",
+                marginTop: -70,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
               <ReactionsBar />
             </div>
@@ -298,47 +306,24 @@ export default function MainApp() {
               </StyledButton> */}
               <StyledLabel size="big">{usersName[currentUser]}</StyledLabel>
               <StyledLabel size="big" style={{ width: 300 }}>
-                2500 Viewers
+                2453 Viewers
               </StyledLabel>
-              <StyledIconButton
-                onClick={(e) => {
-                  setHeart(heart + 1);
-                  // setReactions((reactions) => {
-                  //   const updatedReactions = reactions;
-                  //   updatedReactions[currentUser] = {
-                  //     ...updatedReactions[currentUser],
-                  //     heart: updatedReactions[currentUser].heart + 1,
-                  //   };
-                  //   return updatedReactions;
-                  // });
-                }}
-              >
+              <StyledIconButton>
                 <Icon
                   name="heart"
                   color="red"
                   size="large"
                   style={{ margin: 0, padding: 0, marginTop: -15 }}
                 />
-                <LabelCount>{heart}</LabelCount>
+                <LabelCount>{heart[currentUser]}</LabelCount>
               </StyledIconButton>
-              <StyledIconButton
-                onClick={() => {
-                  setBear(beer + 1);
-                  // reactions[currentUser].beer = reactions[currentUser].beer + 1;
-                }}
-              >
-                <Icon
-                  name="beer"
-                  size="large"
-                  color="red"
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                    marginLeft: 5,
-                    marginTop: -15,
-                  }}
+              <StyledIconButton>
+                <img
+                  src={beerColor}
+                  alt="beer"
+                  style={{ width: 30, marginTop: -20, marginLeft: 5 }}
                 />
-                <LabelCount>{beer}</LabelCount>
+                <LabelCount>{beer[currentUser]}</LabelCount>
               </StyledIconButton>
             </FlexBox>
             <StyledSegment

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import FlexBox from "../Common/FlexBox";
@@ -36,9 +36,31 @@ const StyledBox = styled(StyledSegment)`
     color: white;
   }
 `;
+const LabelCount = styled.div`
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: -40px;
+  margin-left: 75px;
+  position: absolute;
+  font-size: 13px;
+  padding: 3px 5px;
+  font-family: poppins;
+  font-weight: 500;
+  color: white;
+  background-color: red;
+  box-shadow: 0px 0px 5px #ba7ac0;
+`;
 
 export default function Tabs() {
   const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(true);
+    }, 62000);
+  });
   return (
     <>
       <FlexBox alignItems="center">
@@ -63,6 +85,7 @@ export default function Tabs() {
           }}
         >
           Friends
+          {visible && <LabelCount>2</LabelCount>}
         </StyledButton>
       </FlexBox>
       <StyledBox
