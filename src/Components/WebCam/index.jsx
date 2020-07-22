@@ -43,9 +43,11 @@ export default function WebCam() {
 
   const main = () => {
     let preview = document.getElementById("preview");
-
+    const hdConstraints = {
+      video: { width: { exact: 700 }, height: { exact: 320 } },
+    };
     navigator.mediaDevices
-      .getUserMedia({
+      .getUserMedia(hdConstraints, {
         video: true,
         audio: true,
       })

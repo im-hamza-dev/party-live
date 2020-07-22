@@ -10,10 +10,9 @@ import You from "../../Assets/images/dancers/you.png";
 
 const StyledImage = styled(Image)`
   border-radius: 10px;
-  width: 55px;
-  height: 55px;
-  margin-bottom: 10px;
-  margin-left: 3px;
+  width: 120px;
+  height: 90px;
+  margin-bottom: 5px;
 `;
 // const StyledStep = styled(Step)`
 //   &&&& {
@@ -21,81 +20,51 @@ const StyledImage = styled(Image)`
 //     background-color: transparent;
 //   }
 // `;
+const UserItem = styled(FlexBox)`
+  background-color: #5daaf4;
+  border-radius: 10px;
+  padding: 0px;
+  margin-right: 10px;
+`;
 const Name = styled.div`
   color: white;
+  margin-bottom: 5px;
 `;
 
 export default function ProgressCard() {
   return (
     <>
-      {/* <Step.Group>
-        <StyledStep>
-          <div>
-            <StyledImage src={First} />
-            <Step.Content>
-              <Step.Title>Billing</Step.Title>
-            </Step.Content>
-          </div>
-        </StyledStep>
-        <StyledStep active>
-          <div>
-            <StyledImage src={Second} />
-            <Step.Content>
-              <Step.Title>Billing</Step.Title>
-            </Step.Content>
-          </div>
-        </StyledStep>
-
-        <StyledStep disabled>
-          <div>
-            <StyledImage src={Third} />
-            <Step.Content>
-              <Step.Title>Billing</Step.Title>
-            </Step.Content>
-          </div>
-        </StyledStep>
-        <StyledStep disabled>
-          <div>
-            <StyledImage src={You} />
-            <Step.Content>
-              <Step.Title>You</Step.Title>
-            </Step.Content>
-          </div>
-        </StyledStep>
-        <StyledStep disabled>
-          <div>
-            <StyledImage src={Fifth} />
-            <Step.Content>
-              <Step.Title>Billing</Step.Title>
-            </Step.Content>
-          </div>
-        </StyledStep>
-      </Step.Group> */}
       <FlexBox
         alignItems="center"
         justifyContent="space-between"
-        style={{ width: "80%", margin: "auto", padding: 30 }}
+        style={{
+          width: "95%",
+          margin: "auto",
+          padding: 0,
+          paddingBottom: 30,
+          paddingTop: 10,
+        }}
       >
-        <FlexBox flexDirection="column" alignItems="center">
+        <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={First} />
-          <Name>First</Name>
-        </FlexBox>
-        <FlexBox flexDirection="column" alignItems="center">
+          <Name>Alina</Name>
+        </UserItem>
+        <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={Second} />
-          <Name>Second</Name>
-        </FlexBox>
-        <FlexBox flexDirection="column" alignItems="center">
+          <Name>Sabrina</Name>
+        </UserItem>
+        <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={Third} />
-          <Name>Third</Name>
-        </FlexBox>
-        <FlexBox flexDirection="column" alignItems="center">
+          <Name>Alex</Name>
+        </UserItem>
+        <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={You} />
           <Name>You</Name>
-        </FlexBox>
-        <FlexBox flexDirection="column" alignItems="center">
+        </UserItem>
+        <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={Fifth} />
-          <Name>Fifth</Name>
-        </FlexBox>
+          <Name>Anna</Name>
+        </UserItem>
       </FlexBox>
     </>
   );

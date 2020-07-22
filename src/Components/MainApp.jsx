@@ -77,6 +77,12 @@ const LabelCount = styled.div`
 //   width: 100px;
 //   line-height: 30px;
 // `;
+const StyledLogoButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
 const StyledButton = styled(Button)`
   &&&& {
     border-radius: 18px;
@@ -95,7 +101,7 @@ const StyledButton = styled(Button)`
   }
 `;
 const TimerBox = styled.div`
-  border-radius: 5px;
+  border-radius: 15px;
   background-image: linear-gradient(50deg, #ff4af9, #71cdff);
   width: 110px;
   padding: 25px 30px 25px 32px;
@@ -103,8 +109,8 @@ const TimerBox = styled.div`
   font-weight: 800;
   color: white;
   position: absolute;
-  margin-top: -300px;
-  margin-left: 510px;
+  margin-top: 10px;
+  margin-right: 10px;
   text-align: center;
 `;
 
@@ -141,7 +147,7 @@ export default function MainApp() {
         setPush(1);
         setTimerText();
         // setShowImgFlag(0);
-      }, 10000);
+      }, 5000);
     }
   }, [timerPush, currentUser]);
 
@@ -177,6 +183,8 @@ export default function MainApp() {
           <Grid.Column width={8}>
             <StyledSegment
               style={{
+                display: "flex",
+                alignItems: "center",
                 padding: 0,
                 maxHeight: 300,
                 overflow: "hidden",
@@ -193,16 +201,25 @@ export default function MainApp() {
               <Image
                 src={showImage}
                 style={{
-                  marginTop: -380,
+                  // marginTop: -380,
                   opacity: timerPush,
                   position: "absolute",
+                  height: "100%",
+                  width: "100%",
                 }}
               />
             </StyledSegment>
           </Grid.Column>
           <Grid.Column width={8}>
             <StyledSegment
-              style={{ padding: 0, maxHeight: 300, overflow: "hidden" }}
+              style={{
+                alignItems: "flex-start",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: 0,
+                maxHeight: 300,
+                overflow: "hidden",
+              }}
             >
               {currentUser === 3 ? (
                 <WebCam />
@@ -217,11 +234,11 @@ export default function MainApp() {
                   <source src={videoLinks[currentUser]} />
                 </Player>
               )}
+              <TimerBox id="timer" style={{ opacity: timerPush }}>
+                1 0
+              </TimerBox>
             </StyledSegment>
 
-            <TimerBox id="timer" style={{ opacity: timerPush }}>
-              1 0
-            </TimerBox>
             <div
               style={{ position: "absolute", marginTop: -90, marginLeft: 20 }}
             >
@@ -239,7 +256,7 @@ export default function MainApp() {
               justifyContent="center"
               style={{ marginTop: 20 }}
             >
-              <StyledButton
+              <StyledLogoButton
                 style={{
                   padding: 0,
                   borderRadius: "50%",
@@ -252,7 +269,7 @@ export default function MainApp() {
                 }}
               >
                 <img src={Logo} alt="logo-app" style={{ width: "100%" }} />
-              </StyledButton>
+              </StyledLogoButton>
             </FlexBox>
           </Grid.Column>
           <Grid.Column width={7}>
