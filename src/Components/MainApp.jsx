@@ -135,6 +135,9 @@ export default function MainApp() {
   const [programFlow, setProgramFlow] = useState(false);
   const [timerPush, setPush] = useState(0);
   const formatValue = (value) => value.toFixed(0);
+  const [duplicate, setDuplicate] = useState(true);
+  const [firstHeart, setFirstHeart] = useState(0);
+  const [firstBeer, setFirstBeer] = useState(0);
 
   useEffect(() => {
     if (currentUser === 5) {
@@ -155,8 +158,11 @@ export default function MainApp() {
     if (currentUser === 2) {
       // console.log("entered");
       setTimeout(() => {
-        setPush(1);
-        setTimerText();
+        if (duplicate === true) {
+          setPush(1);
+          console.log("timerStarting");
+          setTimerText();
+        }
         // setShowImgFlag(0);
       }, 5000);
     }
@@ -170,9 +176,11 @@ export default function MainApp() {
   //   }
   // });
 
-  const setTimerText = () => {
+  const setTimerText = async () => {
     var timeleft = 10;
-    const t = setInterval(function () {
+    setDuplicate(false);
+
+    const t = await setInterval(function () {
       timeleft--;
       if (timeleft >= 0) {
         document.getElementById("timer").textContent = timeleft;
@@ -282,6 +290,8 @@ export default function MainApp() {
                 }}
                 disabled={programFlow === true}
                 onClick={() => {
+                  setFirstHeart(35);
+                  setFirstBeer(115);
                   djPlayer.play();
                   setProgramFlow(true);
                 }}
@@ -328,10 +338,10 @@ export default function MainApp() {
                 <LabelCount>
                   {currentUser === 0 && (
                     <AnimatedNumber
-                      value={heart[0]}
+                      value={firstHeart}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 1 && (
@@ -339,7 +349,7 @@ export default function MainApp() {
                       value={heart[1]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 2 && (
@@ -347,7 +357,7 @@ export default function MainApp() {
                       value={heart[2]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 3 && (
@@ -355,7 +365,7 @@ export default function MainApp() {
                       value={heart[3]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 4 && (
@@ -363,7 +373,7 @@ export default function MainApp() {
                       value={heart[4]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                 </LabelCount>
@@ -377,10 +387,10 @@ export default function MainApp() {
                 <LabelCount style={{ marginTop: -51 }}>
                   {currentUser === 0 && (
                     <AnimatedNumber
-                      value={beer[0]}
+                      value={firstBeer}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 1 && (
@@ -388,7 +398,7 @@ export default function MainApp() {
                       value={beer[1]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 2 && (
@@ -396,7 +406,7 @@ export default function MainApp() {
                       value={beer[2]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 3 && (
@@ -404,7 +414,7 @@ export default function MainApp() {
                       value={beer[3]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                   {currentUser === 4 && (
@@ -412,7 +422,7 @@ export default function MainApp() {
                       value={beer[4]}
                       formatValue={formatValue}
                       easing="linear"
-                      duration={8000}
+                      duration={15000}
                     />
                   )}
                 </LabelCount>
