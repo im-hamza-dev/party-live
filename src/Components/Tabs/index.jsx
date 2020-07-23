@@ -52,15 +52,8 @@ const LabelCount = styled.div`
   box-shadow: 0px 0px 5px #ba7ac0;
 `;
 
-export default function Tabs() {
+export default function Tabs(props) {
   const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setVisible(true);
-    }, 62000);
-  });
   return (
     <>
       <FlexBox alignItems="center">
@@ -85,7 +78,7 @@ export default function Tabs() {
           }}
         >
           Friends
-          {visible && <LabelCount>2</LabelCount>}
+          {props.currentUser === 4 && <LabelCount>23</LabelCount>}
         </StyledButton>
       </FlexBox>
       <StyledBox

@@ -47,7 +47,7 @@ export default function ProgressCard() {
       >
         <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={First} />
-          <Name>Alina</Name>
+          <Name>Peter</Name>
         </UserItem>
         <UserItem flexDirection="column" alignItems="center">
           <StyledImage src={Second} />

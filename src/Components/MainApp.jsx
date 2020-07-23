@@ -10,12 +10,13 @@ import Logo from "../Assets/images/logo.png";
 import ReactionsBar from "./ReactionsBar";
 import Tabs from "./Tabs";
 import WebCam from "./WebCam";
+import AnimatedNumber from "animated-number-react";
 import showImage from "../Assets/images/backShow.png";
-import DJVideo from "../Assets/videos/dj.mp4";
-import video1st from "../Assets/videos/1st.mp4";
-import video2nd from "../Assets/videos/2nd.mp4";
-import video3rd from "../Assets/videos/3rd.mp4";
-import video5th from "../Assets/videos/5th.mp4";
+// import DJVideo from "../Assets/videos/dj.mp4";
+// import video1st from "../Assets/videos/1st.mp4";
+// import video2nd from "../Assets/videos/2nd.mp4";
+// import video3rd from "../Assets/videos/3rd.mp4";
+// import video5th from "../Assets/videos/5th.mp4";
 import ProgressCard from "./ProgressCard";
 import beerColor from "../Assets/images/beerColor.png";
 
@@ -59,10 +60,11 @@ const StyledLabel = styled(Label)`
 `;
 const LabelCount = styled.div`
   border-radius: 5px;
-  margin-top: -48px;
+  margin-top: -45px;
   margin-left: 18px;
-  display: block;
+  position: absolute;
   font-size: 13px;
+  width: 35px;
   padding: 3px 5px;
   font-family: poppins;
   font-weight: 500;
@@ -116,15 +118,23 @@ const TimerBox = styled.div`
 `;
 
 export default function MainApp() {
-  let usersName = ["Alina", "Sabrina", "Alex", "Jack", "Anna"];
+  let usersName = ["Peter", "Sabrina", "Alex", "You", "Anna"];
   let heart = [35, 22, 17, 23, 14];
   let beer = [115, 187, 175, 225, 207];
-  let videoLinks = [video1st, video2nd, video3rd, video1st, video5th];
+  // let videoLinks = [video1st, video2nd, video3rd, video1st, video5th];
+  let videoLinks = [
+    "https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529253/1st_kgj5cl.mp4",
+    "https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529268/2nd_ygeb4b.mp4",
+    "https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529260/3rd_h9sj7v.mp4",
+    "https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529253/1st_kgj5cl.mp4",
+    "https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529265/5th_rdhzzz.mp4",
+  ];
   const [currentUser, setCurrentUser] = useState(0);
   const [player, setPlayer] = useState();
   const [djPlayer, setDjPlayer] = useState();
   const [programFlow, setProgramFlow] = useState(false);
   const [timerPush, setPush] = useState(0);
+  const formatValue = (value) => value.toFixed(0);
 
   useEffect(() => {
     if (currentUser === 5) {
@@ -197,13 +207,13 @@ export default function MainApp() {
                 }}
               >
                 <BigPlayButton disabled />
-                <source src={DJVideo} />
+                <source src="https://res.cloudinary.com/party-live/video/upload/q_auto/v1595529263/dj_vl1ao4.mp4" />
               </Player>
               <Image
                 src={showImage}
                 style={{
                   // marginTop: -380,
-                  opacity: timerPush,
+                  opacity: timerPush - 0.3,
                   position: "absolute",
                   height: "100%",
                   width: "100%",
@@ -256,7 +266,7 @@ export default function MainApp() {
         </Grid.Row>
         <Grid.Row style={{ padding: 0 }}>
           <Grid.Column width={7}>
-            <Tabs />
+            <Tabs currentUser={currentUser} />
           </Grid.Column>
           <Grid.Column width={2}>
             <FlexBox
@@ -313,17 +323,99 @@ export default function MainApp() {
                   name="heart"
                   color="red"
                   size="large"
-                  style={{ margin: 0, padding: 0, marginTop: -15 }}
+                  style={{ margin: 0, padding: 0 }}
                 />
-                <LabelCount>{heart[currentUser]}</LabelCount>
+                <LabelCount>
+                  {currentUser === 0 && (
+                    <AnimatedNumber
+                      value={heart[0]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 1 && (
+                    <AnimatedNumber
+                      value={heart[1]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 2 && (
+                    <AnimatedNumber
+                      value={heart[2]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 3 && (
+                    <AnimatedNumber
+                      value={heart[3]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 4 && (
+                    <AnimatedNumber
+                      value={heart[4]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                </LabelCount>
               </StyledIconButton>
               <StyledIconButton>
                 <img
                   src={beerColor}
                   alt="beer"
-                  style={{ width: 30, marginTop: -20, marginLeft: 5 }}
+                  style={{ width: 30, marginLeft: 5, marginTop: -5 }}
                 />
-                <LabelCount>{beer[currentUser]}</LabelCount>
+                <LabelCount style={{ marginTop: -51 }}>
+                  {currentUser === 0 && (
+                    <AnimatedNumber
+                      value={beer[0]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 1 && (
+                    <AnimatedNumber
+                      value={beer[1]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 2 && (
+                    <AnimatedNumber
+                      value={beer[2]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 3 && (
+                    <AnimatedNumber
+                      value={beer[3]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                  {currentUser === 4 && (
+                    <AnimatedNumber
+                      value={beer[4]}
+                      formatValue={formatValue}
+                      easing="linear"
+                      duration={8000}
+                    />
+                  )}
+                </LabelCount>
               </StyledIconButton>
             </FlexBox>
             <StyledSegment
