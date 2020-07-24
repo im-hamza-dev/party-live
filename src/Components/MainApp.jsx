@@ -12,6 +12,8 @@ import Tabs from "./Tabs";
 import WebCam from "./WebCam";
 import AnimatedNumber from "animated-number-react";
 import showImage from "../Assets/images/backShow.png";
+import HeartBox from "./CountBox/HeartBox";
+import BeerBox from "./CountBox/BeerBox";
 // import DJVideo from "../Assets/videos/dj.mp4";
 // import video1st from "../Assets/videos/1st.mp4";
 // import video2nd from "../Assets/videos/2nd.mp4";
@@ -336,7 +338,7 @@ export default function MainApp() {
                   style={{ margin: 0, padding: 0 }}
                 />
                 <LabelCount>
-                  {currentUser === 0 && (
+                  {/* {currentUser === 0 && (
                     <AnimatedNumber
                       value={firstHeart}
                       formatValue={formatValue}
@@ -375,7 +377,11 @@ export default function MainApp() {
                       easing="linear"
                       duration={15000}
                     />
-                  )}
+                  )} */}
+                  <HeartBox
+                    currentUser={currentUser}
+                    programFlow={programFlow}
+                  />
                 </LabelCount>
               </StyledIconButton>
               <StyledIconButton>
@@ -385,7 +391,7 @@ export default function MainApp() {
                   style={{ width: 30, marginLeft: 5, marginTop: -5 }}
                 />
                 <LabelCount style={{ marginTop: -51 }}>
-                  {currentUser === 0 && (
+                  {/* {currentUser === 0 && (
                     <AnimatedNumber
                       value={firstBeer}
                       formatValue={formatValue}
@@ -424,7 +430,11 @@ export default function MainApp() {
                       easing="linear"
                       duration={15000}
                     />
-                  )}
+                  )} */}
+                  <BeerBox
+                    currentUser={currentUser}
+                    programFlow={programFlow}
+                  />
                 </LabelCount>
               </StyledIconButton>
             </FlexBox>
