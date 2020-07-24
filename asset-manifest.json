@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/party-live/static/css/main.002ecfcc.chunk.css",
+    "main.js": "/party-live/static/js/main.b61bcd9b.chunk.js",
+    "main.js.map": "/party-live/static/js/main.b61bcd9b.chunk.js.map",
+    "runtime-main.js": "/party-live/static/js/runtime-main.d5df50dd.js",
+    "runtime-main.js.map": "/party-live/static/js/runtime-main.d5df50dd.js.map",
+    "static/css/2.c32e6bef.chunk.css": "/party-live/static/css/2.c32e6bef.chunk.css",
+    "static/js/2.76ab6230.chunk.js": "/party-live/static/js/2.76ab6230.chunk.js",
+    "static/js/2.76ab6230.chunk.js.map": "/party-live/static/js/2.76ab6230.chunk.js.map",
+    "index.html": "/party-live/index.html",
+    "precache-manifest.76b76b5af3fd713303e2ad4fa48ec5b9.js": "/party-live/precache-manifest.76b76b5af3fd713303e2ad4fa48ec5b9.js",
+    "service-worker.js": "/party-live/service-worker.js",
+    "static/css/2.c32e6bef.chunk.css.map": "/party-live/static/css/2.c32e6bef.chunk.css.map",
+    "static/css/main.002ecfcc.chunk.css.map": "/party-live/static/css/main.002ecfcc.chunk.css.map",
+    "static/js/2.76ab6230.chunk.js.LICENSE.txt": "/party-live/static/js/2.76ab6230.chunk.js.LICENSE.txt",
+    "static/media/1stdancer.jpeg": "/party-live/static/media/1stdancer.0eda8473.jpeg",
+    "static/media/2nddancer.jpg": "/party-live/static/media/2nddancer.6abbd4a4.jpg",
+    "static/media/index.css": "/party-live/static/media/Akkordeon-DEMO.7031b9e3.otf",
+    "static/media/backShow.png": "/party-live/static/media/backShow.58adf240.png",
+    "static/media/bg1.png": "/party-live/static/media/bg1.eea5ba4d.png",
+    "static/media/semantic.min.css": "/party-live/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/friends.png": "/party-live/static/media/friends.3ddc8f08.png",
+    "static/media/logo.png": "/party-live/static/media/logo.05b4f37f.png",
+    "static/media/message.png": "/party-live/static/media/message.9aff6d83.png",
+    "static/media/nextDancer.png": "/party-live/static/media/nextDancer.69560be5.png",
+    "static/media/ranking.png": "/party-live/static/media/ranking.4835803e.png",
+    "static/media/you.png": "/party-live/static/media/you.55b5f2b0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5df50dd.js",
+    "static/css/2.c32e6bef.chunk.css",
+    "static/js/2.76ab6230.chunk.js",
+    "static/css/main.002ecfcc.chunk.css",
+    "static/js/main.b61bcd9b.chunk.js"
+  ]
+}
